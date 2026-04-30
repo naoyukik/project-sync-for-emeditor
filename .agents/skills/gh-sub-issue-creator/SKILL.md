@@ -34,6 +34,8 @@ Use the value `3971828927`.
 ### Method B: Using GitHub GraphQL API (GitHub-Efficiency)
 情報の正確な取得とトークン効率を最大化するため、以下の手順で GraphQL を使用して ID を取得する。
 
+**注意**: PowerShell 環境でのパースエラーを防ぐため、コマンドの引数（特にクエリやパラメータ）は必ず **シングルクオート (`'`)** で囲むこと。
+
 1. **コマンド実行**: `run_shell_command` を使用し、直接 `gh api graphql` を実行して ID を取得する。
 
 ```powershell

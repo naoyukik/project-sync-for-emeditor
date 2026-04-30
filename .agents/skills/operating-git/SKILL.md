@@ -41,3 +41,12 @@ git reset
 git add <forgotten_file>
 git commit --amend --no-edit
 ```
+
+## 4. PowerShell におけるコマンド実行の注意点
+
+PowerShell 環境（Windows）では、引数にスペースや特殊文字が含まれる場合、パースエラーを防ぐために引数を **シングルクオート (`'`)** で囲むことを強く推奨する。
+
+例:
+```bash
+git commit -m 'feat: ユーザー認証機能の追加'
+```

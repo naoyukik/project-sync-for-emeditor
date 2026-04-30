@@ -49,6 +49,7 @@ description: Facilitating the creation of Draft Pull Requests on GitHub using th
     a. **GitHub CLI (gh) を使用する**:
       - `run_shell_command` を使用し、上記の仕様で `gh pr create` を実行する。
       - **注意**: 引数のパース精度を優先するため、`cmd /c` を介さず直接実行すること。
+      - **クォートの扱い**: PowerShell環境でのパースエラーを防ぐため、コマンドの引数（特にタイトルや本文など）は必ずシングルクオート (`'`) で囲むこと。
     b. **いずれも使用できない場合**:
       - 実行すべき `gh pr create` コマンドとその引数をテキストとして出力する。
 
