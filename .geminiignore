@@ -1,0 +1,24 @@
+# Exclude everything below this point from gminiignore
+# local files
+# A folder for storing files you want to manage but not commit
+!*.local
+
+# AI files
+!*.local.md
+!AGENTS.override.md
+
+# Gemini CLI
+!.gemini/settings.json
+
+# Codex CLI
+!.codex/config.toml
+
+# EmEditor SDK Documentation
+!/sdk
+
+# Windows sandbox files
+!/sandbox
+
+# MemPalace per-project files
+!mempalace.yaml
+!entities.json
