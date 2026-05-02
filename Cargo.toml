@@ -3,4 +3,14 @@ name = "project-sync-for-emeditor"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "project_sync_for_emeditor"
+crate-type = ["cdylib"]
+
 [dependencies]
+windows = { version = "0.62.2", features = [
+    "Win32_Foundation",
+    "Win32_System_SystemServices",
+    "Win32_UI_WindowsAndMessaging",
+] }
+notify = "8.0"
