@@ -1,4 +1,4 @@
-# **EmEditor Terminal Coding Conventions & Guidelines (汎用規約版)**
+# **Coding Conventions & Guidelines (汎用規約版)**
 
 本ドキュメントは、Rust および Win32 API（EmEditor プラグイン）という特殊な開発環境における、コード品質と保守性を担保するための汎用的な実行規則を定めるものである。物理的な構成については `architecture_rules.md` を参照せよ。
 
