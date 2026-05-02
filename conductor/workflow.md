@@ -9,6 +9,23 @@
 5. **ユーザーエクスペリエンス第一:** すべての決定はユーザーエクスペリエンスを優先するべきである。
 6. **非インタラクティブ & CI対応:** 非インタラクティブなコマンドを優先する。テストやリンターなどのウォッチモードを持つツールは、一度だけ実行されるように `CI=true` を使用する。
 
+## フェーズ構成の標準 (Standard Phase Structure)
+
+Conductor で生成される `plan.md` は、原則として以下の構成を維持しなければならない。
+
+### フェーズ 1: 問題の把握と詳細設計 (Discovery & Detailed Design)
+- [ ] Task: `autonomous-researcher` スキルによる詳細調査と `evidence_report.md` の作成
+- [ ] Task: 調査結果に基づいた `plan.md` の以降のタスクの具体化
+- [ ] Task: Conductor - User Manual Verification 'フェーズ 1: 問題の把握と詳細設計' (Protocol in workflow.md)
+
+### 以降のフェーズ: 具体的な実装と検証 (Specific Implementation)
+- フェーズ 1 で具体化された詳細タスク群（TDD に基づく実装とテスト）を配置する。
+- **品質確保タスク**: 各フェーズの実装完了後、必ず以下のタスクを実行し、警告を解消すること。
+  - [ ] Task: `cargo clippy` の実行と警告の解消
+  - [ ] Task: `cargo fmt` の実行
+- [ ] Task: Conductor - User Manual Verification '<Phase Name>' (Protocol in workflow.md)
+  - フェーズ内のclippyとfmtが全て解消された後、成果物をコミットすること。
+
 ## タスクワークフロー
 
 すべてのタスクは以下の厳密なライフサイクルに従う：
