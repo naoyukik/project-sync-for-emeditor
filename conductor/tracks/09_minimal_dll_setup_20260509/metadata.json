@@ -1,0 +1,8 @@
+{
+  "track_id": "09_minimal_dll_setup_20260509",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-05-09T00:00:00Z",
+  "updated_at": "2026-05-09T00:00:00Z",
+  "description": "GitHub Issue 9を対応。最小構成のDLL（器）の実装とEmEditorへのプラグイン認識"
+}
