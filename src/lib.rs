@@ -28,8 +28,11 @@ pub extern "C" fn OnCommand(_hwnd: windows::Win32::Foundation::HWND) {
 }
 
 #[unsafe(no_mangle)]
-#[allow(non_snake_case)]
-pub extern "C" fn QueryStatus(_hwnd: windows::Win32::Foundation::HWND, pb_checked: *mut BOOL) -> BOOL {
+#[allow(non_snake_case, clippy::not_unsafe_ptr_arg_deref)]
+pub extern "C" fn QueryStatus(
+    _hwnd: windows::Win32::Foundation::HWND,
+    pb_checked: *mut BOOL,
+) -> BOOL {
     if !pb_checked.is_null() {
         unsafe {
             *pb_checked = BOOL(0);
