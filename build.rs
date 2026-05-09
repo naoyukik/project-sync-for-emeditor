@@ -15,8 +15,8 @@ fn main() {
     // Link with the .def file to ensure exported function names are not mangled
     println!("cargo:rustc-cdylib-link-arg=/DEF:{}", def_file.display());
 
-    // Generate resource.rs from resource.h
-    generate_resource_rs(&manifest_path);
+    // Generate resource.rs from resource.h into OUT_DIR
+    generate_resource_rs();
 
     // Compile resource file
     embed_resource::compile("project-sync-for-emeditor.rc", embed_resource::NONE)
@@ -24,9 +24,11 @@ fn main() {
         .unwrap_or_else(|e| panic!("Failed to compile project-sync-for-emeditor.rc: {}", e));
 }
 
-fn generate_resource_rs(manifest_path: &std::path::Path) {
-    let header_path = manifest_path.join("resource.h");
-    let output_path = manifest_path.join("src/gui/driver/resource.rs");
+fn generate_resource_rs() {
+    let manifest_dir = env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR is not set");
+    let header_path = std::path::Path::new(&manifest_dir).join("resource.h");
+    let out_dir = env::var("OUT_DIR").expect("OUT_DIR is not set");
+    let output_path = std::path::Path::new(&out_dir).join("resource.rs");
 
     // Ensure resource.h exists and read it
     let content = std::fs::read_to_string(&header_path).unwrap_or_else(|e| {
@@ -37,7 +39,7 @@ fn generate_resource_rs(manifest_path: &std::path::Path) {
         )
     });
 
-    let mut rust_code = String::from("//! Generated from resource.h by build.rs\n\n");
+    let mut rust_code = String::from("/// Generated from resource.h by build.rs\n");
     for line in content.lines() {
         let line = line.trim();
         if !line.starts_with("#define") {
@@ -76,11 +78,6 @@ fn generate_resource_rs(manifest_path: &std::path::Path) {
             ));
         }
     }
-
-    // Ensure the parent directory exists
-    let parent = output_path.parent().expect("Invalid output path");
-    std::fs::create_dir_all(parent)
-        .unwrap_or_else(|e| panic!("Failed to create src/gui/driver directory: {}", e));
 
     // Only write if content has changed to avoid unnecessary rebuilds
     let should_write = match std::fs::read_to_string(&output_path) {

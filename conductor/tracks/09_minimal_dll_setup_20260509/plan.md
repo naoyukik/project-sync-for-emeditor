@@ -34,3 +34,12 @@
 - [x] Task: src/lib.rs に HelloWorld ロジックと Safety Comment を復元
 - [x] Task: `cargo clippy` & `cargo fmt` の実行
 - [x] Task: Conductor - User Manual Verification 'フェーズ 4: レビュー指摘事項の適用' (Protocol in workflow.md)
+
+## フェーズ 5: 追加レビュー指摘事項の適用 (Final Polish & Review Fixes)
+- [x] Task: `src/lib.rs` の全エクスポート関数を `extern "system"` に統一（呼出規約不一致の解消）
+- [x] Task: `src/lib.rs` の `OnEvents` シグネチャを SDK (`HWND, u32, LPARAM`) に修正
+- [x] Task: `build.rs` を修正し、生成ファイルを `OUT_DIR` 配下へ出力し `include!` で読み込む形式に変更
+- [x] Task: `build.rs` の `/DEF:` パスを引用符で囲み、スペースを含むパスでのリンク失敗を防止
+- [x] Task: `cargo clippy` & `cargo fmt` の実行
+- [ ] Task: 実機検証（MessageBoxの表示が正常か再確認）
+- [ ] Task: Conductor - User Manual Verification 'フェーズ 5: 追加レビュー指摘事項の適用' (Protocol in workflow.md)
