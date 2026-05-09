@@ -28,3 +28,9 @@
 - [x] Task: `cargo clippy` の実行と警告の解消
 - [x] Task: `cargo fmt` の実行
 - [x] Task: Conductor - User Manual Verification 'フェーズ 3: プラグイン関数の実装と検証' (Protocol in workflow.md) [checkpoint: 2b35700]
+
+## フェーズ 4: レビュー指摘事項の適用 (Review Fixes)
+- [x] Task: build.rs のパニックメッセージにエラー詳細を追加
+- [x] Task: src/lib.rs に HelloWorld ロジックと Safety Comment を復元
+- [x] Task: `cargo clippy` & `cargo fmt` の実行
+- [x] Task: Conductor - User Manual Verification 'フェーズ 4: レビュー指摘事項の適用' (Protocol in workflow.md)

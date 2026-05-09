@@ -23,8 +23,18 @@ extern "system" fn DllMain(
 
 #[unsafe(no_mangle)]
 #[allow(non_snake_case)]
-pub extern "C" fn OnCommand(_hwnd: windows::Win32::Foundation::HWND) {
-    // Placeholder for EmEditor plugin command
+pub extern "C" fn OnCommand(hwnd: windows::Win32::Foundation::HWND) {
+    use windows::Win32::UI::WindowsAndMessaging::{MB_OK, MessageBoxW};
+    use windows::core::w;
+
+    unsafe {
+        MessageBoxW(
+            Some(hwnd),
+            w!("Hello World from project-sync!"),
+            w!("EmEditor Plugin"),
+            MB_OK,
+        );
+    }
 }
 
 #[unsafe(no_mangle)]
@@ -34,6 +44,8 @@ pub extern "C" fn QueryStatus(
     pb_checked: *mut BOOL,
 ) -> BOOL {
     if !pb_checked.is_null() {
+        // SAFETY: pb_checked は EmEditor プラグインインターフェースを通じて渡される
+        // 有効なポインタであることを前提とする。
         unsafe {
             *pb_checked = BOOL(0);
         }

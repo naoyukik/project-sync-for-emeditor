@@ -21,7 +21,7 @@ fn main() {
     // Compile resource file
     embed_resource::compile("project-sync-for-emeditor.rc", embed_resource::NONE)
         .manifest_required()
-        .expect("Failed to compile project-sync-for-emeditor.rc");
+        .unwrap_or_else(|e| panic!("Failed to compile project-sync-for-emeditor.rc: {}", e));
 }
 
 fn generate_resource_rs(manifest_path: &std::path::Path) {
@@ -29,8 +29,13 @@ fn generate_resource_rs(manifest_path: &std::path::Path) {
     let output_path = manifest_path.join("src/gui/driver/resource.rs");
 
     // Ensure resource.h exists and read it
-    let content = std::fs::read_to_string(&header_path)
-        .unwrap_or_else(|_| panic!("Failed to read resource.h at {}", header_path.display()));
+    let content = std::fs::read_to_string(&header_path).unwrap_or_else(|e| {
+        panic!(
+            "Failed to read resource.h at {}: {}",
+            header_path.display(),
+            e
+        )
+    });
 
     let mut rust_code = String::from("//! Generated from resource.h by build.rs\n\n");
     for line in content.lines() {
@@ -74,7 +79,8 @@ fn generate_resource_rs(manifest_path: &std::path::Path) {
 
     // Ensure the parent directory exists
     let parent = output_path.parent().expect("Invalid output path");
-    std::fs::create_dir_all(parent).expect("Failed to create src/gui/driver directory");
+    std::fs::create_dir_all(parent)
+        .unwrap_or_else(|e| panic!("Failed to create src/gui/driver directory: {}", e));
 
     // Only write if content has changed to avoid unnecessary rebuilds
     let should_write = match std::fs::read_to_string(&output_path) {
