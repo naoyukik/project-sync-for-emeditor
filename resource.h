@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by emeditor-terminal.rc
+// Used by project-sync-for-emeditor.rc
 //
 #define IDD_SET_PROPERTIES              101
 #define IDC_STATIC_FONT_NAME            1001

@@ -18,7 +18,7 @@ extern "system" fn DllMain(
         DLL_PROCESS_DETACH => {}
         _ => {}
     }
-    BOOL::from(true)
+    BOOL(1)
 }
 
 #[unsafe(no_mangle)]
