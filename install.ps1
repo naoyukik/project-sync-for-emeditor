@@ -29,19 +29,19 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 $destDir = "$env:LOCALAPPDATA\Programs\EmEditor\PlugIns"
-$destFile = Join-Path $destDir "project-sync.dll"
+$destFile = Join-Path $destDir "project_sync_for_emeditor.dll"
 
 if ($OutputPath) {
     if (Test-Path $OutputPath -PathType Container) {
         $destDir = $OutputPath
-        $destFile = Join-Path $destDir "project-sync.dll"
+        $destFile = Join-Path $destDir "project_sync_for_emeditor.dll"
     } elseif ($OutputPath.ToLower().EndsWith(".dll")) {
         $destFile = $OutputPath
         $destDir = Split-Path -Parent $OutputPath
         if (-not $destDir) { $destDir = "." }
     } else {
         $destDir = $OutputPath
-        $destFile = Join-Path $destDir "project-sync.dll"
+        $destFile = Join-Path $destDir "project_sync_for_emeditor.dll"
     }
 }
 
@@ -60,7 +60,7 @@ if (!(Test-Path $destDir)) {
     New-Item -ItemType Directory -Path $destDir -Force | Out-Null
 }
 
-$src = "target\$configuration\project-sync.dll"
+$src = "target\$configuration\project_sync_for_emeditor.dll"
 
 if (!(Test-Path $src)) {
     Write-Error "Build artifact not found: $src"
