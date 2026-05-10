@@ -9,6 +9,8 @@
 
 ## ビルド構成
 - **DLL (cdylib):** EmEditorプラグインとして動作するため、ダイナミックリンクライブラリ形式でビルドされる。
+- **Linker Control:** `exports.def` ファイルと `build.rs` (`cargo:rustc-cdylib-link-arg=/DEF:...`) を使用し、Manglingを避けた正確なシンボルエクスポートを制御。
+- **Resource Handling:** `build.rs` で `resource.h` から Rust 定数を自動生成し、`.rc` ファイルを埋め込む。
 
 ## データベース
 - **なし:** 本プラグインはローカルのファイルシステム上で直接動作し、EmEditorのプロジェクトファイルやAPIと連携するため、外部データベースは使用しない。
