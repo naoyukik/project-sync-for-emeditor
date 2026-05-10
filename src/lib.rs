@@ -2,6 +2,8 @@ use windows::Win32::Foundation::HMODULE;
 use windows::Win32::System::SystemServices::{DLL_PROCESS_ATTACH, DLL_PROCESS_DETACH};
 use windows::core::BOOL;
 
+pub mod application;
+pub mod domain;
 pub mod gui;
 
 static mut G_HINSTANCE: HMODULE = HMODULE(std::ptr::null_mut());

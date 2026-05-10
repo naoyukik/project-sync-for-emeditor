@@ -1,15 +1,15 @@
 # Implementation Plan: Projectプラグイン XML同期エンジンの実装 (Issue 10)
 
 ## フェーズ 1: ドメインおよびアプリケーションレイヤーの実装 (Domain & Application)
-- [ ] Task: `ProjectTree` エンティティおよび関連するデータ構造の実装
-    - [ ] Sub-task: (Red) `ProjectTree` にファイル・フォルダを追加/削除する振る舞いの単体テストを作成する。
-    - [ ] Sub-task: (Green) テストをパスする最小限の実装を行う。
-- [ ] Task: `ProjectRepository` トレイトおよび `SyncProjectWorkflow` (ユースケース) の定義
-    - [ ] Sub-task: (Red) モックを用いた `SyncProjectWorkflow` の同期ロジックの単体テストを作成する（差分抽出のロジック等）。
-    - [ ] Sub-task: (Green) テストをパスする最小限の実装を行う。
-- [ ] Task: `cargo clippy` の実行と警告の解消
-- [ ] Task: `cargo fmt` の実行
-- [ ] Task: Conductor - User Manual Verification 'フェーズ 1: ドメインおよびアプリケーションレイヤーの実装' (Protocol in workflow.md)
+- [x] Task: `ProjectTree` エンティティおよび関連するデータ構造の実装
+    - [x] Sub-task: (Red) `ProjectTree` にファイル・フォルダを追加/削除する振る舞いの単体テストを作成する。
+    - [x] Sub-task: (Green) テストをパスする最小限の実装を行う。
+- [x] Task: `ProjectRepository` トレイトおよび `SyncProjectWorkflow` (ユースケース) の定義
+    - [x] Sub-task: (Red) モックを用いた `SyncProjectWorkflow` の同期ロジックの単体テストを作成する（差分抽出のロジック等）。
+    - [x] Sub-task: (Green) テストをパスする最小限の実装を行う。
+- [x] Task: `cargo clippy` の実行と警告の解消
+- [x] Task: `cargo fmt` の実行
+- [~] Task: Conductor - User Manual Verification 'フェーズ 1: ドメインおよびアプリケーションレイヤーの実装' (Protocol in workflow.md)
 
 ## フェーズ 2: インフラストラクチャレイヤーの実装 - XML操作 (XML Infrastructure)
 - [ ] Task: `quick-xml` を用いた `XmlProjectRepositoryImpl` の実装
