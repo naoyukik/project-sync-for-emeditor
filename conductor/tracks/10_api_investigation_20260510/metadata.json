@@ -1,0 +1,8 @@
+{
+  "track_id": "10_api_investigation_20260510",
+  "type": "investigation",
+  "status": "new",
+  "created_at": "2026-05-10T00:00:00Z",
+  "updated_at": "2026-05-10T00:00:00Z",
+  "description": "GitHub Issue 10を実装したい。ProjectプラグインのXMLを作り直そうと思っていたが、Projectプラグインにファイルやフォルダを追加するAPIが公開されていないかをまず調査したい。"
+}
