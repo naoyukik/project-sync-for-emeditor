@@ -114,6 +114,6 @@ Co-Authored-By: gemini-cli <218195315+gemini-cli@users.noreply.github.com>
 ---
 
 ## プロジェクト情報
-- **リポジトリ**: https://github.com/naoyukik/emeditor-terminal
+- **リポジトリ**: https://github.com/naoyukik/project-sync-for-emeditor
 - **主要言語**: Rust (Win32 API)
-- **ログ位置**: `$env:TEMP\emeditor_terminal.log`
+- **ログ位置**: `$env:TEMP\project-sync-for-emeditor.log`
