@@ -1,6 +1,6 @@
 # Implementation Plan: GitHub Issue 10 - ProjectプラグインAPI調査
 
-## フェーズ 1: 問題の把握と詳細設計 (Discovery & Detailed Design)
+## フェーズ 1: 問題の把握と詳細設計 (Discovery & Detailed Design) [checkpoint: 8b3d304]
 - [x] Task: `autonomous-researcher` スキルによる詳細調査と `evidence_report.md` の作成
     - [ ] Sub-task: EmEditor SDKおよびマクロリファレンスからProjectプラグイン操作APIの有無を調査する。
     - [ ] Sub-task: APIが非公開の場合の代替案として、XML直接操作の実現性とリスクを評価する。
