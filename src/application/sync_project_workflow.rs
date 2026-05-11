@@ -1,4 +1,4 @@
-use crate::domain::project_repository::ProjectRepository;
+use crate::domain::repository::project_repository::ProjectRepository;
 use std::path::PathBuf;
 
 pub struct SyncProjectWorkflow<R: ProjectRepository> {
@@ -27,21 +27,21 @@ impl<R: ProjectRepository> SyncProjectWorkflow<R> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::domain::project_tree_entity::ProjectTree;
+    use crate::domain::model::project_tree_entity::ProjectTreeEntity;
 
     struct MockRepository;
 
     impl ProjectRepository for MockRepository {
-        fn scan(&self, root_path: PathBuf) -> Result<ProjectTree, String> {
-            Ok(ProjectTree::new(root_path))
+        fn scan(&self, root_path: PathBuf) -> Result<ProjectTreeEntity, String> {
+            Ok(ProjectTreeEntity::new(root_path))
         }
 
-        fn save(&self, _tree: &ProjectTree) -> Result<(), String> {
+        fn save(&self, _tree: &ProjectTreeEntity) -> Result<(), String> {
             Ok(())
         }
 
-        fn load(&self, path: PathBuf) -> Result<ProjectTree, String> {
-            Ok(ProjectTree::new(path))
+        fn load(&self, path: PathBuf) -> Result<ProjectTreeEntity, String> {
+            Ok(ProjectTreeEntity::new(path))
         }
     }
 

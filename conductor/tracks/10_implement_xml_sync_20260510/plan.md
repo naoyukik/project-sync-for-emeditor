@@ -12,14 +12,14 @@
 - [x] Task: Conductor - User Manual Verification 'フェーズ 1: ドメインおよびアプリケーションレイヤーの実装' [checkpoint: 0b45a2b] (Protocol in workflow.md)
 
 ## フェーズ 2: インフラストラクチャレイヤーの実装 - XML操作 (XML Infrastructure)
-- [ ] Task: `quick-xml` を用いた `XmlProjectRepositoryImpl` の実装
-    - [ ] Sub-task: (Red) `.eeproj` フォーマットでのXML生成およびパース処理の単体テストを作成する。
-    - [ ] Sub-task: (Green) `quick-xml` を用いて、テストをパスするXML生成・パースロジックを実装する。
-    - [ ] Sub-task: (Red) ファイルシステムのスキャンおよび除外フィルタリング（`.git`等）の単体テストを作成する。
-    - [ ] Sub-task: (Green) スキャンロジックを実装し、相対パスへの変換処理を含める。
-- [ ] Task: `cargo clippy` の実行と警告の解消
-- [ ] Task: `cargo fmt` の実行
-- [ ] Task: Conductor - User Manual Verification 'フェーズ 2: インフラストラクチャレイヤーの実装 - XML操作' (Protocol in workflow.md)
+- [~] Task: `quick-xml` を用いた `XmlProjectRepositoryImpl` の実装
+    - [x] Sub-task: (Red) `.eeproj` フォーマットでのXML生成およびパース処理の単体テストを作成する。
+    - [x] Sub-task: (Green) `quick-xml` を用いて、テストをパスするXML生成・パースロジックを実装する。
+    - [x] Sub-task: (Red) ファイルシステムのスキャンおよび除外フィルタリング（`.git`等）の単体テストを作成する。
+    - [x] Sub-task: (Green) スキャンロジックを実装し、相対パスへの変換処理を含める。
+- [x] Task: `cargo clippy` の実行と警告の解消
+- [x] Task: `cargo fmt` の実行
+- [~] Task: Conductor - User Manual Verification 'フェーズ 2: インフラストラクチャレイヤーの実装 - XML操作' (Protocol in workflow.md)
 
 ## フェーズ 3: インフラストラクチャレイヤーの実装 - DLL連携とデバウンス (DLL Integration)
 - [ ] Task: `EmEditorGuiDriver` (または相当するインフラ層) における `ExecutePlugin` の呼び出し実装

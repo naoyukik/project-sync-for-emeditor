@@ -5,6 +5,7 @@ use windows::core::BOOL;
 pub mod application;
 pub mod domain;
 pub mod gui;
+pub mod infra;
 
 static mut G_HINSTANCE: HMODULE = HMODULE(std::ptr::null_mut());
 
