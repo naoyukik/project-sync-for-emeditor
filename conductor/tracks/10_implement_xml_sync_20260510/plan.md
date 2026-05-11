@@ -9,7 +9,7 @@
     - [x] Sub-task: (Green) テストをパスする最小限の実装を行う。
 - [x] Task: `cargo clippy` の実行と警告の解消
 - [x] Task: `cargo fmt` の実行
-- [~] Task: Conductor - User Manual Verification 'フェーズ 1: ドメインおよびアプリケーションレイヤーの実装' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'フェーズ 1: ドメインおよびアプリケーションレイヤーの実装' [checkpoint: 0b45a2b] (Protocol in workflow.md)
 
 ## フェーズ 2: インフラストラクチャレイヤーの実装 - XML操作 (XML Infrastructure)
 - [ ] Task: `quick-xml` を用いた `XmlProjectRepositoryImpl` の実装
