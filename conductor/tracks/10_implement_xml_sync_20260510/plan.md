@@ -29,4 +29,4 @@
     - [x] Sub-task: (Green) デバウンス制御ロジックを実装する。
 - [x] Task: `cargo clippy` の実行と警告の解消
 - [x] Task: `cargo fmt` の実行
-- [~] Task: Conductor - User Manual Verification 'フェーズ 3: インフラストラクチャレイヤーの実装 - DLL連携とデバウンス' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'フェーズ 3: インフラストラクチャレイヤーの実装 - DLL連携とデバウンス' [checkpoint: e75d2c6] (Protocol in workflow.md)
