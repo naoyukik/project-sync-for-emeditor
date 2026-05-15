@@ -27,6 +27,9 @@
 - [x] Task: 同期リクエストのデバウンス制御の実装
     - [x] Sub-task: (Red) 連続した呼び出しが一定時間（500ms）待機後に1回だけ処理されることの単体テストを作成する。
     - [x] Sub-task: (Green) デバウンス制御ロジックを実装する。
+- [x] Task: プラグインエントリーポイントへの統合
+    - [x] Sub-task: `OnCommand` 内で `SyncProjectWorkflow` を呼び出し、実際の同期処理をキックする。
 - [x] Task: `cargo clippy` の実行と警告の解消
 - [x] Task: `cargo fmt` の実行
 - [x] Task: Conductor - User Manual Verification 'フェーズ 3: インフラストラクチャレイヤーの実装 - DLL連携とデバウンス' [checkpoint: e75d2c6] (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification '最終統合と動作確認' (Protocol in workflow.md)

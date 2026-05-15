@@ -19,6 +19,7 @@ extern "system" fn DllMain(
     match fdw_reason {
         DLL_PROCESS_ATTACH => unsafe {
             G_HINSTANCE = hinst_dll;
+            init_logger();
         },
         DLL_PROCESS_DETACH => {}
         _ => {}
@@ -26,19 +27,106 @@ extern "system" fn DllMain(
     BOOL(1)
 }
 
+fn init_logger() {
+    use simplelog::*;
+    use std::fs::File;
+
+    let mut log_path = std::env::temp_dir();
+    log_path.push("project-sync-for-emeditor.log");
+
+    let _ = WriteLogger::init(
+        LevelFilter::Info,
+        Config::default(),
+        File::create(log_path).unwrap(),
+    );
+    log::info!("Logger initialized.");
+}
+
 #[unsafe(no_mangle)]
 #[allow(non_snake_case)]
 pub extern "system" fn OnCommand(hwnd: windows::Win32::Foundation::HWND) {
-    use windows::Win32::UI::WindowsAndMessaging::{MB_OK, MessageBoxW};
+    use crate::application::sync_project_workflow::SyncProjectWorkflow;
+    use crate::gui::driver::emeditor_gui_driver::EmEditorGuiDriver;
+    use crate::infra::driver::xml_io_driver::XmlIoDriver;
+    use crate::infra::repository::project_xml_repository_impl::ProjectXmlRepositoryImpl;
+    use windows::Win32::UI::WindowsAndMessaging::{
+        MB_ICONERROR, MB_ICONINFORMATION, MB_OK, MessageBoxW,
+    };
     use windows::core::w;
 
-    unsafe {
-        MessageBoxW(
-            Some(hwnd),
-            w!("Hello World from project-sync!"),
-            w!("EmEditor Plugin"),
-            MB_OK,
-        );
+    let gui_driver = EmEditorGuiDriver::new(hwnd);
+
+    log::info!("OnCommand triggered.");
+
+    let root_path = match gui_driver.get_active_file_path() {
+        Ok(path) => {
+            log::info!("Active file path resolved: {:?}", path);
+            if path.exists() || path.is_absolute() {
+                path.parent().map(|p| p.to_path_buf()).unwrap_or(path)
+            } else {
+                log::error!(
+                    "Active file path is not a valid filesystem path: {:?}",
+                    path
+                );
+                unsafe {
+                    MessageBoxW(
+                        Some(hwnd),
+                        w!(
+                            "The current file is not saved. Please save the file first to identify the project root."
+                        ),
+                        w!("Project Sync"),
+                        MB_OK | MB_ICONERROR,
+                    );
+                }
+                return;
+            }
+        }
+        Err(e) => {
+            log::error!("Path resolution failed. Error: {}", e);
+            unsafe {
+                MessageBoxW(
+                    Some(hwnd),
+                    w!("Please open a file first to identify the project root."),
+                    w!("Project Sync"),
+                    MB_OK | MB_ICONERROR,
+                );
+            }
+            return;
+        }
+    };
+
+    if root_path.as_os_str().is_empty() {
+        log::error!("Final root_path is empty. Aborting sync.");
+        return;
+    }
+
+    log::info!("Final root_path: {:?}", root_path);
+
+    let driver = XmlIoDriver::new();
+    let repository = ProjectXmlRepositoryImpl::new(driver);
+    let workflow = SyncProjectWorkflow::new(repository);
+
+    match workflow.run(root_path) {
+        Ok(_) => {
+            log::info!("Sync successful.");
+            unsafe {
+                MessageBoxW(
+                    Some(hwnd),
+                    w!("Project XML has been synchronized successfully."),
+                    w!("Project Sync"),
+                    MB_OK | MB_ICONINFORMATION,
+                );
+            }
+        }
+        Err(e) => unsafe {
+            log::error!("Sync failed: {}", e);
+            MessageBoxW(
+                Some(hwnd),
+                w!("Failed to synchronize project. Check logs for details."),
+                w!("Project Sync Error"),
+                MB_OK | MB_ICONERROR,
+            );
+        },
     }
 }
 
