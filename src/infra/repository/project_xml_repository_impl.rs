@@ -61,7 +61,11 @@ impl ProjectXmlRepositoryImpl {
                 .to_string_lossy()
                 .into_owned();
 
-            if file_name == ".git" || file_name == "target" || file_name == "node_modules" {
+            if file_name == ".git"
+                || file_name == "target"
+                || file_name == "node_modules"
+                || file_name == ".venv"
+            {
                 continue;
             }
 
